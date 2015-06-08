@@ -52,13 +52,17 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
     private FrameLayout mImageFrameLayout;
 
     private Toolbar mToolbar;
+
     private LinearLayout mToolbarLinearLayout;
 
     private LinearLayout mContentLinearLayout;
 
     private String news_title;
+
     private String news_content;
+
     private String news_url;
+    
     private String news_image_url;
 
     public NewsReaderActivity() {
