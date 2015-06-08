@@ -69,7 +69,16 @@ public class NewsAdapter
 
         final ResponseNews item = getItem(position);
 
-        holder.itemView.setTag(item.getUrl());
+        //holder.itemView.setTag(item.getUrl());
+        //holder.itemView.setTag(position);
+        List<String> data = new ArrayList<String>();
+        data.add(Html.fromHtml(item.getTitle()).toString());
+        data.add(getFullImage(item.getThumbnail()));
+        data.add(Html.fromHtml(item.getContent()).toString());
+        data.add(item.getUrl());
+
+        holder.itemView.setTag(data);
+
         holder.itemView.setOnClickListener(mOnClickListener);
         holder.titleView.setText(Html.fromHtml(item.getTitle()));
 

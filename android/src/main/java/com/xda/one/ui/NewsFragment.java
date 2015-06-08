@@ -10,7 +10,6 @@ import com.xda.one.util.UIUtils;
 import com.xda.one.util.Utils;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -61,10 +60,13 @@ public class NewsFragment extends Fragment
         mAdapter = new NewsAdapter(getActivity(), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v.getTag() != null && v.getTag() instanceof String) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse((String) v.getTag()));
-                    startActivity(i);
+                if (v.getTag() != null) {// && v.getTag() instanceof String) {
+                    Intent intent = new Intent(getActivity(), NewsReaderActivity.class);
+                    intent.putExtra("NEWS_TITLE", ((List<String>)v.getTag()).get(0));
+                    intent.putExtra("NEWS_IMAGE_URL", ((List<String>)v.getTag()).get(1));
+                    intent.putExtra("NEWS_CONTENT", ((List<String>)v.getTag()).get(2));
+                    intent.putExtra("NEWS_URL", ((List<String>)v.getTag()).get(3));
+                    startActivity(intent);
                 }
             }
         });
