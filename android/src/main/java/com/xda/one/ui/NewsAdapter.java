@@ -72,7 +72,7 @@ public class NewsAdapter
         List<String> data = new ArrayList<String>();
         data.add(Html.fromHtml(item.getTitle()).toString());
         data.add(getFullImage(item.getThumbnail()));
-        data.add(Html.fromHtml(item.getContent()).toString());
+        data.add(item.getContent());
         data.add(item.getUrl());
 
         holder.itemView.setTag(data);
