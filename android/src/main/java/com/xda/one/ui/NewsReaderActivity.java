@@ -118,8 +118,6 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
                                     } else {
                                         paletteColor = vibrantColor;
                                     }
-                                    // Use generated palette
-                                    //paletteColor = p.getVibrantColor(R.attr.colorPrimary);
                                     mToolbarLinearLayout.setBackgroundColor(paletteColor);
                                     setStatusBarColor(paletteColor);
                                 }
