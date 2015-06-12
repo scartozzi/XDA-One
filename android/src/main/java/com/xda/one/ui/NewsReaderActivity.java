@@ -59,7 +59,7 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
     public NewsReaderActivity() {
 
     }
-    
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -109,7 +109,7 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
                     .into(headerImageView, new com.squareup.picasso.Callback() {
                         @Override
                         public void onSuccess() {
-                            Palette.from(((BitmapDrawable) headerImageView.getDrawable()).getBitmap()).generate(new Palette.PaletteAsyncListener() {
+                            Palette.from(((BitmapDrawable) headerImageView.getDrawable()).getBitmap()).maximumColorCount(6).generate(new Palette.PaletteAsyncListener() {
                                 public void onGenerated(Palette p) {
                                     int vibrantColor = p.getVibrantColor(-1);
                                     if (vibrantColor == -1) {
