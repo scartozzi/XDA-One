@@ -60,6 +60,6 @@
     </style>
 
     <style name="CardViewStyle.Light" parent="CardView.Light">
-        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:foreground">@drawable/item_selector</item>
     </style>
 </resources>
