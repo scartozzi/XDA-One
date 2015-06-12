@@ -59,8 +59,7 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
     public NewsReaderActivity() {
 
     }
-
-    //@Override
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -150,7 +149,6 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
     }
 
     private void setupScrollView() {
-        //mScrollView.setCallback(this);
         mScrollView.addCallbacks(this);
 
         ViewTreeObserver viewTreeObserver = mScrollView.getViewTreeObserver();
@@ -191,12 +189,10 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
         // choose appropriate y
         float newY = Math.max(headerImageView.getHeight(), scrollY);
 
-        // translate image and toolbar
         ViewCompat.setTranslationY(mToolbarLinearLayout, newY);
         ViewCompat.setTranslationY(mImageFrameLayout, scrollY * 0.5f);
     }
 
-    //@Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.news_reader_activity, container, false);
@@ -212,18 +208,7 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        // Handle the other action bar items here
-        //Toast.makeText(MainActivity.this, item.getItemId() + "  " + item.getTitle(), Toast.LENGTH_LONG).show();
         switch (item.getItemId()) {
-            /*
-            case android.R.id.home:
-                Toast.makeText(MainActivity.this, "Deal link is currently unavailable", Toast.LENGTH_LONG).show();
-                onBackPressed();
-                return true;
-                */
             case R.id.news_share:
                 Intent shareIntent = ShareCompat.IntentBuilder.from(this)
                         .setSubject(news_title)
