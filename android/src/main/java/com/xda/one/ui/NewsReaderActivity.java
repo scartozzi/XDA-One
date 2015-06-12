@@ -33,7 +33,7 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
 
     private ObservableScrollView mScrollView;
 
-    int vibrantColor;
+    int paletteColor;
     private ImageView headerImageView;
 
     private TextView titleView;
@@ -112,10 +112,16 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
                         public void onSuccess() {
                             Palette.from(((BitmapDrawable) headerImageView.getDrawable()).getBitmap()).generate(new Palette.PaletteAsyncListener() {
                                 public void onGenerated(Palette p) {
+                                    int vibrantColor = p.getVibrantColor(-1);
+                                    if (vibrantColor == -1) {
+                                        paletteColor = p.getMutedColor(getResources().getColor(R.color.colorPrimary));
+                                    } else {
+                                        paletteColor = vibrantColor;
+                                    }
                                     // Use generated palette
-                                    vibrantColor = p.getVibrantColor(R.attr.colorPrimary);
-                                    mToolbarLinearLayout.setBackgroundColor(vibrantColor);
-                                    setStatusBarColor(vibrantColor);
+                                    //paletteColor = p.getVibrantColor(R.attr.colorPrimary);
+                                    mToolbarLinearLayout.setBackgroundColor(paletteColor);
+                                    setStatusBarColor(paletteColor);
                                 }
                             });
                         }
