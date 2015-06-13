@@ -6,6 +6,7 @@ import com.xda.one.api.model.response.container.ResponseNewsContainer;
 import com.xda.one.loader.NewsLoader;
 import com.xda.one.ui.listener.InfiniteRecyclerLoadHelper;
 import com.xda.one.ui.widget.XDARefreshLayout;
+import com.xda.one.util.CompatUtils;
 import com.xda.one.util.UIUtils;
 import com.xda.one.util.Utils;
 
@@ -39,6 +40,8 @@ public class NewsFragment extends Fragment
     private XDARefreshLayout mRefreshLayout;
 
     private RecyclerView mRecyclerView;
+
+    private ActionBar actionBar;
 
     // View helpers
     private InfiniteRecyclerLoadHelper mInfiniteScrollListener;
@@ -82,9 +85,13 @@ public class NewsFragment extends Fragment
     public void onViewCreated(final View view, final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final ActionBar actionBar = UIUtils.getSupportActionBar(getActivity());
+        actionBar = UIUtils.getSupportActionBar(getActivity());
         actionBar.setTitle(R.string.xda_news);
         actionBar.setSubtitle(null);
+
+        if (CompatUtils.hasLollipop()) {
+            actionBar.setElevation(getResources().getDimension(R.dimen.toolbar_elevation));
+        }
 
         mRefreshLayout = (XDARefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         mRefreshLayout.setXDAColourScheme();
@@ -126,6 +133,16 @@ public class NewsFragment extends Fragment
                         new InfiniteLoadCallback(), mTotalPages, null);
                 addDataToAdapter(news);
             }
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        // destroy action mode
+        if (CompatUtils.hasLollipop()) {
+            actionBar.setElevation(0);
         }
     }
 
