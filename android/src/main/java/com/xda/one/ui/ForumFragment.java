@@ -298,7 +298,7 @@ public class ForumFragment extends Fragment
         @Override
         public boolean onCreateActionMode(final ActionMode actionMode, final Menu menu) {
             final BaseActivity baseActivity = UIUtils.getBaseActivity(getActivity());
-            baseActivity.getMenuInflater().inflate(R.menu.thread_fragment_cab, menu);
+            baseActivity.getMenuInflater().inflate(R.menu.forum_fragment_cab, menu);
 
             // Locate MenuItem with ShareActionProvider
             mShareMenuItem = menu.findItem(R.id.forum_fragment_cab_share);

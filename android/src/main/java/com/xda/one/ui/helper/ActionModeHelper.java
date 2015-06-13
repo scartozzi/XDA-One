@@ -137,14 +137,7 @@ public class ActionModeHelper implements View.OnClickListener, View.OnLongClickL
     //
     public void onCheckedStateChanged(final ActionMode actionMode, int position,
             boolean isNowChecked) {
-        if (mActionModeCallback != null) {
-            try {
-                mActionModeCallback.onCheckedStateChanged(actionMode, position, isNowChecked);
-            }
-            catch (NullPointerException ex) {
-                Log.d("onCheckedStateChanged", ex.toString());
-            }
-        }
+        mActionModeCallback.onCheckedStateChanged(actionMode, position, isNowChecked);
     }
 
     public void saveInstanceState(Bundle outBundle) {
