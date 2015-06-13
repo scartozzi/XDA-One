@@ -243,6 +243,10 @@ public class ForumFragment extends Fragment
     public void onDestroyView() {
         super.onDestroyView();
 
+        // destroy action mode
+        if(mModeHelper != null)
+            mModeHelper.finish();
+
         mClient.getBus().unregister(mEventHandler);
     }
 
