@@ -317,6 +317,10 @@ public class ThreadFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
 
+        // destroy action mode
+        if(mModeHelper != null)
+            mModeHelper.finish();
+
         mThreadClient.getBus().unregister(mThreadEventHelper);
     }
 
