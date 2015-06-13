@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -132,6 +133,10 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
             contentView.setText(Html.fromHtml(news_content));
 
             setupScrollView();
+
+            // check if the window should float
+            if (getResources().getBoolean(R.bool.isTablet))
+                setupFloatingWindow();
         }
     }
 
@@ -140,6 +145,17 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
             return;
         }
         this.getWindow().setStatusBarColor(scaleColor(color, 0.8f, false));
+    }
+
+    private void setupFloatingWindow() {
+        // configure this Activity as a floating window, dimming the background
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.width = getResources().getDimensionPixelSize(R.dimen.news_reader_floating_width);
+        params.height = getResources().getDimensionPixelSize(R.dimen.news_reader_floating_height);
+        params.alpha = 1;
+        params.dimAmount = 0.4f;
+        params.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        this.getWindow().setAttributes(params);
     }
 
     public static int scaleColor(int color, float factor, boolean scaleAlpha) {

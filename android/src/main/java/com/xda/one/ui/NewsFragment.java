@@ -60,7 +60,7 @@ public class NewsFragment extends Fragment
         mAdapter = new NewsAdapter(getActivity(), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (v.getTag() != null) {// && v.getTag() instanceof String) {
+                if (v.getTag() != null) {
                     Intent intent = new Intent(getActivity(), NewsReaderActivity.class);
                     intent.putExtra("NEWS_TITLE", ((List<String>)v.getTag()).get(0));
                     intent.putExtra("NEWS_IMAGE_URL", ((List<String>)v.getTag()).get(1));
