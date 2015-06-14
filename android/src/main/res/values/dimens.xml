@@ -28,6 +28,11 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
 
+    <!-- News Reader. -->
+    <dimen name="news_frame_margin">8dp</dimen>
+    <dimen name="news_image_height">160dp</dimen>
+    <dimen name="news_reader_image_height">200dp</dimen>
+
     <!-- NewsReader floating window. -->
     <dimen name="news_reader_floating_width">500dp</dimen>
     <dimen name="news_reader_floating_height">650dp</dimen>
