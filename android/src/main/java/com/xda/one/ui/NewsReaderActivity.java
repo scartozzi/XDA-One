@@ -153,7 +153,7 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
         params.width = getResources().getDimensionPixelSize(R.dimen.news_reader_floating_width);
         params.height = getResources().getDimensionPixelSize(R.dimen.news_reader_floating_height);
         params.alpha = 1;
-        params.dimAmount = 0.4f;
+        params.dimAmount = 0.6f;
         params.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         this.getWindow().setAttributes(params);
     }
