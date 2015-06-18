@@ -29,6 +29,7 @@ import com.xda.one.R;
 
 import com.xda.one.ui.widget.ObservableScrollView;
 import com.xda.one.util.CompatUtils;
+import com.xda.one.util.UIUtils;
 
 public class NewsReaderActivity extends AppCompatActivity implements ObservableScrollView.Callbacks {
 
@@ -101,7 +102,7 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
             news_url = extras.getString("NEWS_URL");
             news_image_url = extras.getString("NEWS_IMAGE_URL");
 
-            setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+            UIUtils.setStatusBarColor(this, getResources().getColor(R.color.colorPrimaryDark), false);
 
             Picasso.with(this)
                     .load(news_image_url).fit().centerCrop()
@@ -119,7 +120,7 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
                                         paletteColor = vibrantColor;
                                     }
                                     mToolbarLinearLayout.setBackgroundColor(paletteColor);
-                                    setStatusBarColor(paletteColor);
+                                    UIUtils.setStatusBarColor(NewsReaderActivity.this, paletteColor, true);
                                 }
                             });
                         }
@@ -140,13 +141,6 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
         }
     }
 
-    public void setStatusBarColor(int color) {
-        if (!CompatUtils.hasLollipop()) {
-            return;
-        }
-        this.getWindow().setStatusBarColor(scaleColor(color, 0.8f, false));
-    }
-
     private void setupFloatingWindow() {
         // configure this Activity as a floating window, dimming the background
         WindowManager.LayoutParams params = getWindow().getAttributes();
@@ -156,12 +150,6 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
         params.dimAmount = 0.6f;
         params.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         this.getWindow().setAttributes(params);
-    }
-
-    public static int scaleColor(int color, float factor, boolean scaleAlpha) {
-        return Color.argb(scaleAlpha ? (Math.round(Color.alpha(color) * factor)) : Color.alpha(color),
-                Math.round(Color.red(color) * factor), Math.round(Color.green(color) * factor),
-                Math.round(Color.blue(color) * factor));
     }
 
     private void setupScrollView() {
