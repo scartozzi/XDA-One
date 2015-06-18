@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -132,9 +131,6 @@ public class ActionModeHelper implements View.OnClickListener, View.OnLongClickL
                 menuItem);
     }
 
-    //
-    // ToDo Fix, prevents FC during long press for now
-    //
     public void onCheckedStateChanged(final ActionMode actionMode, int position,
             boolean isNowChecked) {
         mActionModeCallback.onCheckedStateChanged(actionMode, position, isNowChecked);
