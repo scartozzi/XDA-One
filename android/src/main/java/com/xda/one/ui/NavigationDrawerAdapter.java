@@ -109,8 +109,8 @@ public class NavigationDrawerAdapter extends BaseAdapter {
         NAVIGATION_DRAWER_ITEMS.add(new NavigationDrawerItem(R.drawable.ic_nav_search,
                 R.string.search, R.string.other));
 
-        NAVIGATION_DRAWER_ITEMS.add(new NavigationDrawerItem(R.drawable.ic_nav_settings,
-                R.string.settings, R.string.other));
+        //NAVIGATION_DRAWER_ITEMS.add(new NavigationDrawerItem(R.drawable.ic_nav_settings,
+        //        R.string.settings, R.string.other));
     }
 
     public static class NavigationDrawerItem {
