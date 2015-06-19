@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class NewsFragment extends Fragment
@@ -65,10 +66,20 @@ public class NewsFragment extends Fragment
             public void onClick(View v) {
                 if (v.getTag() != null) {
                     Intent intent = new Intent(getActivity(), NewsReaderActivity.class);
+
+                    Bundle newsItem = (Bundle)v.getTag();
+                    //HashMap<String, String> newsItem = (HashMap<String, String>)v.getTag();
+                    intent.putExtra("NEWS_TITLE", newsItem.getString("NEWS_TITLE"));
+                    intent.putExtra("NEWS_IMAGE_URL", newsItem.getString("NEWS_IMAGE_URL"));
+                    intent.putExtra("NEWS_CONTENT", newsItem.getString("NEWS_CONTENT"));
+                    intent.putExtra("NEWS_URL", newsItem.getString("NEWS_URL"));
+                    /*
                     intent.putExtra("NEWS_TITLE", ((List<String>)v.getTag()).get(0));
                     intent.putExtra("NEWS_IMAGE_URL", ((List<String>)v.getTag()).get(1));
                     intent.putExtra("NEWS_CONTENT", ((List<String>)v.getTag()).get(2));
                     intent.putExtra("NEWS_URL", ((List<String>)v.getTag()).get(3));
+
+                    */
                     startActivity(intent);
                 }
             }

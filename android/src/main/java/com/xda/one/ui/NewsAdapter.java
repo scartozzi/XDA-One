@@ -1,6 +1,7 @@
 package com.xda.one.ui;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -69,13 +70,13 @@ public class NewsAdapter
 
         final ResponseNews item = getItem(position);
 
-        List<String> data = new ArrayList<String>();
-        data.add(Html.fromHtml(item.getTitle()).toString());
-        data.add(getFullImage(item.getThumbnail()));
-        data.add(item.getContent());
-        data.add(item.getUrl());
+        Bundle newsItem = new Bundle();
+        newsItem.putString("NEWS_TITLE", Html.fromHtml(item.getTitle()).toString());
+        newsItem.putString("NEWS_CONTENT", item.getContent());
+        newsItem.putString("NEWS_IMAGE_URL", getFullImage(item.getThumbnail()));
+        newsItem.putString("NEWS_URL", item.getUrl());
 
-        holder.itemView.setTag(data);
+        holder.itemView.setTag(newsItem);
 
         holder.itemView.setOnClickListener(mOnClickListener);
         holder.titleView.setText(Html.fromHtml(item.getTitle()));
