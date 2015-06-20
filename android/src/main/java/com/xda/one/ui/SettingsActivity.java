@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.xda.one.R;
-import com.xda.one.util.CompatUtils;
+import com.xda.one.util.UIUtils;
 
 public class SettingsActivity extends BaseActivity {
     @Override
@@ -16,9 +16,7 @@ public class SettingsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 
-        if (CompatUtils.hasLollipop()) {
-            this.getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
+        UIUtils.setStatusBarColor(this, getResources().getColor(R.color.colorPrimaryDark), false);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
