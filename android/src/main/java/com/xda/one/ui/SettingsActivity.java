@@ -54,7 +54,6 @@ public class SettingsActivity extends BaseActivity {
         @Override
         public void onDestroy() {
             super.onDestroy();
-            //PrefUtils.unregisterOnSharedPreferenceChangeListener(getActivity(), this);
         }
 
         @Override
