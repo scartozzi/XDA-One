@@ -4,6 +4,7 @@ import com.xda.one.R;
 import com.xda.one.api.model.response.ResponseForum;
 import com.xda.one.db.ForumDbHelper;
 import com.xda.one.model.misc.ForumType;
+import com.xda.one.ui.listener.BackPressedListener;
 import com.xda.one.ui.widget.TabLayout;
 import com.xda.one.util.FragmentUtils;
 import com.xda.one.util.UIUtils;
@@ -30,7 +31,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-public class ForumPagerFragment extends Fragment {
+public class ForumPagerFragment extends Fragment implements BackPressedListener {
 
     private ForumFragmentAdapter mFragmentAdapter;
 
@@ -96,6 +97,7 @@ public class ForumPagerFragment extends Fragment {
         searchView.setOnSuggestionListener(listener);
     }
 
+    @Override
     public boolean onBackPressed() {
         final boolean isExpanded = MenuItemCompat.isActionViewExpanded(mSearchMenuItem);
         if (isExpanded) {

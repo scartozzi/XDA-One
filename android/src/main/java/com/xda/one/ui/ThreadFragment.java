@@ -25,6 +25,7 @@ import com.xda.one.api.retrofit.RetrofitThreadClient;
 import com.xda.one.model.augmented.AugmentedUnifiedThread;
 import com.xda.one.model.augmented.container.AugmentedUnifiedThreadContainer;
 import com.xda.one.ui.helper.ActionModeHelper;
+import com.xda.one.ui.listener.BackPressedListener;
 import com.xda.one.ui.listener.InfiniteRecyclerLoadHelper;
 import com.xda.one.ui.thread.DefaultThreadLoaderStrategy;
 import com.xda.one.ui.thread.FirstThreadClickStrategy;
@@ -46,7 +47,7 @@ import com.xda.one.util.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThreadFragment extends Fragment {
+public class ThreadFragment extends Fragment implements BackPressedListener {
 
     // Request codes
     public static final int CREATE_THREAD_REQUEST_CODE = 101;
@@ -314,12 +315,19 @@ public class ThreadFragment extends Fragment {
     }
 
     @Override
+    public boolean onBackPressed() {
+        final boolean isExpanded = mModeHelper.isActionModeStarted();
+        if (isExpanded) {
+            if (mModeHelper != null)
+                mModeHelper.finish();
+        }
+        return isExpanded;
+    }
+
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
-
-        // destroy action mode
-        if(mModeHelper != null)
-            mModeHelper.finish();
 
         mThreadClient.getBus().unregister(mThreadEventHelper);
     }

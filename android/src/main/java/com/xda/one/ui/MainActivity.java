@@ -23,6 +23,7 @@ import com.xda.one.R;
 import com.xda.one.api.misc.Consumer;
 import com.xda.one.model.misc.ForumType;
 import com.xda.one.ui.helper.UrlParseHelper;
+import com.xda.one.ui.listener.BackPressedListener;
 import com.xda.one.util.AccountUtils;
 import com.xda.one.util.FragmentUtils;
 import com.xda.one.util.OneApplication;
@@ -174,15 +175,8 @@ public class MainActivity extends BaseActivity
         }
 
         final Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
-        // TODO - fix this hack
-        if (fragment instanceof SearchFragment) {
-            final SearchFragment searchFragment = (SearchFragment) fragment;
-            if (searchFragment.onBackPressed()) {
-                return;
-            }
-        } else if (fragment instanceof ForumPagerFragment) {
-            final ForumPagerFragment pagerFragment = (ForumPagerFragment) fragment;
-            if (pagerFragment.onBackPressed()) {
+        if (fragment != null && fragment instanceof BackPressedListener) {
+            if (((BackPressedListener) fragment).onBackPressed()) {
                 return;
             }
         }
@@ -196,14 +190,6 @@ public class MainActivity extends BaseActivity
                 return;
             }
         }
-
-        /*
-        if (!mDrawerLayout.isDrawerOpen(Gravity.START)
-                && getSupportFragmentManager().getBackStackEntryCount() == 0) {
-            mDrawerLayout.openDrawer(Gravity.START);
-            return;
-        }
-        */
 
         super.onBackPressed();
 

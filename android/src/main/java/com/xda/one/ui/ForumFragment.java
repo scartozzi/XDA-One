@@ -13,6 +13,7 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.XDALinerLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ import com.xda.one.loader.ForumLoader;
 import com.xda.one.model.misc.ForumType;
 import com.xda.one.ui.helper.ActionModeHelper;
 import com.xda.one.ui.helper.QuickReturnHelper;
+import com.xda.one.ui.listener.BackPressedListener;
 import com.xda.one.ui.widget.DividerItemDecoration;
 import com.xda.one.ui.widget.HierarchySpinnerAdapter;
 import com.xda.one.ui.widget.XDARefreshLayout;
@@ -50,7 +52,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class ForumFragment extends Fragment
-        implements LoaderManager.LoaderCallbacks<List<ResponseForum>> {
+        implements LoaderManager.LoaderCallbacks<List<ResponseForum>>,
+        BackPressedListener {
 
     public static final String FORUM_TYPE = "forum_type";
 
@@ -240,12 +243,18 @@ public class ForumFragment extends Fragment
     }
 
     @Override
+    public boolean onBackPressed() {
+        final boolean isExpanded = mModeHelper.isActionModeStarted();
+        if (isExpanded) {
+            if (mModeHelper != null)
+                mModeHelper.finish();
+        }
+        return isExpanded;
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
-
-        // destroy action mode
-        if(mModeHelper != null)
-            mModeHelper.finish();
 
         mClient.getBus().unregister(mEventHandler);
     }
