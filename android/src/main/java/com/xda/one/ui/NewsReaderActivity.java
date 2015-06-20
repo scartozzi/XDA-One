@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -132,6 +133,7 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
 
             titleView.setText(news_title);
             contentView.setText(Html.fromHtml(news_content));
+            contentView.setMovementMethod(LinkMovementMethod.getInstance());
 
             setupScrollView();
 
