@@ -33,7 +33,7 @@ public class AuthForumLoaderCallbacks
 
     @Override
     public Loader<List<ResponseForum>> onCreateLoader(final int id, final Bundle args) {
-        return new ForumLoader(mActivity, ForumType.ALL, null, true);
+        return new ForumLoader(mActivity, ForumType.TOP, null, true);
     }
 
     @Override
