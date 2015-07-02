@@ -1,8 +1,8 @@
 package com.xda.one.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
@@ -11,7 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
+import android.text.Spannable;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,8 +28,10 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.xda.one.R;
 
+import com.xda.one.parser.ContentParser;
+import com.xda.one.parser.TextDataStructure;
 import com.xda.one.ui.widget.ObservableScrollView;
-import com.xda.one.util.CompatUtils;
+import com.xda.one.util.SectionUtils;
 import com.xda.one.util.UIUtils;
 
 public class NewsReaderActivity extends AppCompatActivity implements ObservableScrollView.Callbacks {
@@ -41,11 +43,11 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
 
     private TextView titleView;
 
-    private TextView contentView;
-
     private FrameLayout mImageFrameLayout;
 
     private Toolbar mToolbar;
+
+    private LayoutInflater mLayoutInflater;
 
     private LinearLayout mToolbarLinearLayout;
 
@@ -80,7 +82,6 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
 
         titleView = (TextView) findViewById(R.id.news_title);
         headerImageView = (ImageView) findViewById(R.id.news_image_view);
-        contentView = (TextView) findViewById(R.id.news_contentView);
 
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,8 +133,14 @@ public class NewsReaderActivity extends AppCompatActivity implements ObservableS
                     });
 
             titleView.setText(news_title);
-            contentView.setText(Html.fromHtml(news_content));
-            contentView.setMovementMethod(LinkMovementMethod.getInstance());
+
+            final Spannable formattedContent = ContentParser.parseAndSmilifyBBCode(this,
+                    news_content);
+            final TextDataStructure structure = new TextDataStructure(formattedContent);
+
+            mLayoutInflater = LayoutInflater.from(NewsReaderActivity.this);
+            SectionUtils.setupSections(this, mLayoutInflater, mContentLinearLayout, structure,
+                    null);
 
             setupScrollView();
 
