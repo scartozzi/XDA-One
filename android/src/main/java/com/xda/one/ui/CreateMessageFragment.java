@@ -9,7 +9,6 @@ import com.xda.one.auth.XDAAccount;
 import com.xda.one.event.message.MessageSendingFailedEvent;
 import com.xda.one.event.message.MessageSentEvent;
 import com.xda.one.util.AccountUtils;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +87,22 @@ public class CreateMessageFragment extends DialogFragment implements TextWatcher
         super.onDestroy();
 
         mPrivateMessageClient.getBus().unregister(mEventListener);
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        if (getDialog() == null)
+            return;
+
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+
+        int dialogWidth = metrics.widthPixels;
+        int dialogHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
     }
 
     @Override

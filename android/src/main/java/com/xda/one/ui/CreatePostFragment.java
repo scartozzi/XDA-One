@@ -20,6 +20,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +95,22 @@ public class CreatePostFragment extends DialogFragment {
         super.onDestroy();
 
         mClient.getBus().unregister(mEventListener);
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        if (getDialog() == null)
+            return;
+
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+
+        int dialogWidth = metrics.widthPixels;
+        int dialogHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
     }
 
     @Override

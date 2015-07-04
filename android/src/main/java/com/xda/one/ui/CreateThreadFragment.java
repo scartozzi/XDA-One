@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,22 @@ public class CreateThreadFragment extends DialogFragment implements TextWatcher 
         mClient = RetrofitThreadClient.getClient(getActivity());
 
         setStyle(DialogFragment.STYLE_NO_FRAME, android.R.style.Theme_DeviceDefault_Light_Dialog);
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        if (getDialog() == null)
+            return;
+
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+
+        int dialogWidth = metrics.widthPixels;
+        int dialogHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
     }
 
     @Override
