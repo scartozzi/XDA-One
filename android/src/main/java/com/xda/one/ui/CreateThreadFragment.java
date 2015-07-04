@@ -8,7 +8,6 @@ import com.xda.one.api.misc.Result;
 import com.xda.one.api.retrofit.RetrofitThreadClient;
 import com.xda.one.auth.XDAAccount;
 import com.xda.one.util.AccountUtils;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;

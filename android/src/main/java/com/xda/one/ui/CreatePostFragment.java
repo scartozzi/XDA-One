@@ -148,7 +148,7 @@ public class CreatePostFragment extends DialogFragment {
         });
         sendButton.setEnabled(false);
 
-        mMessageEditText = (EditText) view.findViewById(R.id.create_post_dialog_fragment_message);
+        mMessageEditText = (EditText) view.findViewById(R.id.create_post_fragment_content);
         mMessageEditText.addTextChangedListener(new NonEmptyTextViewListener(sendButton));
 
         if (mPosts != null && mPosts.length > 0) {
