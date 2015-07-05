@@ -17,6 +17,7 @@ import com.xda.one.util.PostUtils;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -98,22 +99,6 @@ public class CreatePostFragment extends DialogFragment {
     }
 
     @Override
-    public void onStart()
-    {
-        super.onStart();
-
-        if (getDialog() == null)
-            return;
-
-        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
-
-        int dialogWidth = metrics.widthPixels;
-        int dialogHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
-
-        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
-    }
-
-    @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
             final Bundle savedInstanceState) {
         return inflater.inflate(R.layout.create_post_fragment, container, false);
@@ -179,6 +164,21 @@ public class CreatePostFragment extends DialogFragment {
             public void onClick(View view) {
                 mSelectEmoticonFragment.setTargetFragment(holder, 101);
                 mSelectEmoticonFragment.show(getFragmentManager(), "Select Emoticon");
+            }
+        });
+
+        getDialog().setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                if (getDialog() == null)
+                    return;
+
+                DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
+
+                int dialogWidth = metrics.widthPixels;
+                int dialogHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+                getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
             }
         });
 

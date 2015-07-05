@@ -8,6 +8,8 @@ import com.xda.one.api.misc.Result;
 import com.xda.one.api.retrofit.RetrofitThreadClient;
 import com.xda.one.auth.XDAAccount;
 import com.xda.one.util.AccountUtils;
+
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -52,22 +54,6 @@ public class CreateThreadFragment extends DialogFragment implements TextWatcher 
         mClient = RetrofitThreadClient.getClient(getActivity());
 
         setStyle(DialogFragment.STYLE_NO_FRAME, android.R.style.Theme_DeviceDefault_Light_Dialog);
-    }
-
-    @Override
-    public void onStart()
-    {
-        super.onStart();
-
-        if (getDialog() == null)
-            return;
-
-        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
-
-        int dialogWidth = metrics.widthPixels;
-        int dialogHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
-
-        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
     }
 
     @Override
@@ -139,6 +125,21 @@ public class CreateThreadFragment extends DialogFragment implements TextWatcher 
         });
 
         mPostContent.addTextChangedListener(this);
+
+        getDialog().setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                if (getDialog() == null)
+                    return;
+
+                DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
+
+                int dialogWidth = metrics.widthPixels;
+                int dialogHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+                getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
+            }
+        });
     }
 
 
