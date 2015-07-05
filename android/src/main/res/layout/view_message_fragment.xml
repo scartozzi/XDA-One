@@ -9,12 +9,24 @@
         android:id="@+id/view_message_fragment_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="16dp">
+        android:clipToPadding="false" >
+
+        <android.support.v7.widget.CardView
+            style="@style/CardViewStyle.Light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            pkg:cardCornerRadius="0dp"
+            pkg:cardElevation="1dp" >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp" >
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/avatar"
@@ -78,6 +90,7 @@
                 android:orientation="vertical"
                 android:padding="8dp" />
         </RelativeLayout>
+        </android.support.v7.widget.CardView>
     </ScrollView>
 
 
@@ -93,5 +106,4 @@
         android:padding="16dp"
         android:src="@drawable/reply"
         android:tint="@android:color/white" />
-
 </RelativeLayout>
