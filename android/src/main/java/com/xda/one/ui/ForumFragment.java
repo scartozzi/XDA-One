@@ -2,6 +2,7 @@ package com.xda.one.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -13,14 +14,12 @@ import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.XDALinerLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 import com.squareup.picasso.Picasso;
@@ -37,9 +36,7 @@ import com.xda.one.event.forum.ForumSubscriptionChangingFailedEvent;
 import com.xda.one.loader.ForumLoader;
 import com.xda.one.model.misc.ForumType;
 import com.xda.one.ui.helper.ActionModeHelper;
-import com.xda.one.ui.helper.QuickReturnHelper;
 import com.xda.one.ui.listener.BackPressedListener;
-import com.xda.one.ui.widget.DividerItemDecoration;
 import com.xda.one.ui.widget.HierarchySpinnerAdapter;
 import com.xda.one.ui.widget.XDARefreshLayout;
 import com.xda.one.util.AccountUtils;
@@ -86,6 +83,8 @@ public class ForumFragment extends Fragment
     private Forum mForum;
 
     private ForumClient mClient;
+
+    private View mRootView;
 
     public static ForumFragment createInstance(final ForumType forumType) {
         final Bundle bundle = new Bundle();
@@ -200,7 +199,10 @@ public class ForumFragment extends Fragment
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.forum_fragment, container, false);
+
+        mRootView = inflater.inflate(R.layout.forum_fragment, container, false);
+
+        return mRootView;
     }
 
     @Override
@@ -383,13 +385,14 @@ public class ForumFragment extends Fragment
 
         @Subscribe
         public void onForumSubscribed(final ForumSubscriptionChangedEvent event) {
-            // TODO - show a snackbar
             if (event.isNowSubscribed) {
-                Toast.makeText(getActivity(), R.string.forum_subscription_subscribed,
-                        Toast.LENGTH_LONG).show();
+                Snackbar.make(mRootView,
+                        R.string.forum_subscription_subscribed, Snackbar.LENGTH_SHORT)
+                .show();
             } else {
-                Toast.makeText(getActivity(), R.string.forum_subscription_unsubscribed,
-                        Toast.LENGTH_LONG).show();
+                Snackbar.make(mRootView,
+                        R.string.forum_subscription_unsubscribed, Snackbar.LENGTH_SHORT)
+                        .show();
             }
 
             // We would need to update the state of the subscribe button now
@@ -401,9 +404,9 @@ public class ForumFragment extends Fragment
 
         @Subscribe
         public void onForumSubscribingFailed(final ForumSubscriptionChangingFailedEvent event) {
-            // TODO - show a snackbar
-            Toast.makeText(getActivity(), R.string.forum_subscription_toggle_failed,
-                    Toast.LENGTH_LONG).show();
+            Snackbar.make(mRootView,
+                    R.string.forum_subscription_toggle_failed, Snackbar.LENGTH_LONG)
+                    .show();
         }
     }
 }
