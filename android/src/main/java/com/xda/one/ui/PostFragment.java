@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.NotificationCompat;
@@ -99,6 +100,8 @@ public class PostFragment extends Fragment
     private ResponsePostContainer mContainerArgument;
 
     private View mEmptyView;
+
+    private View mRootView;
 
     public static PostFragment getInstance(final UnifiedThread unifiedThread, final int page) {
         final Bundle bundle = new Bundle();
@@ -223,7 +226,9 @@ public class PostFragment extends Fragment
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.post_fragment, container, false);
+        mRootView =  inflater.inflate(R.layout.post_fragment, container, false);
+
+        return mRootView;
     }
 
     @Override
@@ -341,7 +346,9 @@ public class PostFragment extends Fragment
         mPostClient.toggleThanksAsync(post, new Consumer<Result>() {
             @Override
             public void run(Result result) {
-                Toast.makeText(getActivity(), "Thanks toggled", Toast.LENGTH_LONG).show();
+                Snackbar.make(mRootView,
+                        R.string.thanks_toggle, Snackbar.LENGTH_SHORT)
+                        .show();
                 mAdapter.notifyItemChanged(position);
             }
         });
