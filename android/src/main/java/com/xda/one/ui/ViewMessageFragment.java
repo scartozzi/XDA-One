@@ -8,7 +8,7 @@ import com.xda.one.api.retrofit.RetrofitPrivateMessageClient;
 import com.xda.one.event.message.MessageDeletedEvent;
 import com.xda.one.model.augmented.AugmentedMessage;
 import com.xda.one.parser.TextDataStructure;
-import com.xda.one.ui.widget.FloatingActionButton;
+
 import com.xda.one.util.CompatUtils;
 import com.xda.one.util.SectionUtils;
 import com.xda.one.util.Utils;
@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -137,6 +138,7 @@ public class ViewMessageFragment extends Fragment {
         final FloatingActionButton button = (FloatingActionButton) view
                 .findViewById(R.id.view_message_fragment_floating_reply_button);
         button.setOnClickListener(new CreateReplyListener());
+        /*
         if (CompatUtils.hasLollipop()) {
             final Drawable drawable = getResources().getDrawable(R.drawable.fab_background);
             button.setBackground(drawable);
@@ -144,6 +146,7 @@ public class ViewMessageFragment extends Fragment {
             final int color = getResources().getColor(R.color.fab_color);
             button.setBackgroundColor(color);
         }
+        */
     }
 
     @Override

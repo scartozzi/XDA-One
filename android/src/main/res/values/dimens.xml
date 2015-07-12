@@ -12,6 +12,7 @@
 
     <dimen name="header_height">200dp</dimen>
     <dimen name="fab_size">64dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_elevation">3dp</dimen>
     <dimen name="list_item_left_start_text_padding">72dp</dimen>
     <dimen name="list_item_height">88dp</dimen>

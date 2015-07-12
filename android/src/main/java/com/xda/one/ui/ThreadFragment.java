@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -36,7 +37,6 @@ import com.xda.one.ui.thread.ThreadClickStrategy;
 import com.xda.one.ui.thread.ThreadEventHelper;
 import com.xda.one.ui.thread.ThreadLoaderStrategy;
 import com.xda.one.ui.thread.UnreadThreadClickStrategy;
-import com.xda.one.ui.widget.FloatingActionButton;
 import com.xda.one.ui.widget.HierarchySpinnerAdapter;
 import com.xda.one.ui.widget.XDARefreshLayout;
 import com.xda.one.util.AccountUtils;
@@ -114,6 +114,8 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
     private ThreadAdapter mAdapter;
 
     private HierarchySpinnerAdapter mSpinnerAdapter;
+
+    private View mRootView;
 
     // Data
     private int mTotalPages;
@@ -206,7 +208,7 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
         mSpinnerAdapter = new HierarchySpinnerAdapter(getActivity(),
                 LayoutInflater.from(getActivity()), mHierarchy, getFragmentManager());
 
-        mThreadEventHelper = new ThreadEventHelper(getActivity(), mAdapter);
+        //mThreadEventHelper = new ThreadEventHelper(getActivity(), mAdapter, mRootView);
         helper.setAdapter(mAdapter);
         helper.setModeHelper(mModeHelper);
     }
@@ -214,7 +216,9 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.thread_fragment, container, false);
+        mRootView = inflater.inflate(R.layout.thread_fragment, container, false);
+        mThreadEventHelper = new ThreadEventHelper(getActivity(), mAdapter, mRootView);
+        return mRootView;
     }
 
     @Override
@@ -288,6 +292,7 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
         }
 
         button.setOnClickListener(new CreateThreadListener());
+        /*
         if (CompatUtils.hasLollipop()) {
             final Drawable drawable = getResources().getDrawable(R.drawable.fab_background);
             CompatUtils.setBackground(button, drawable);
@@ -295,6 +300,7 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
             final int color = getResources().getColor(R.color.fab_color);
             button.setBackgroundColor(color);
         }
+        */
     }
 
     private void setupActionBar() {
