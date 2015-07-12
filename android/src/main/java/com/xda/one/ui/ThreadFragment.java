@@ -308,10 +308,6 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
     private void setupActionBar() {
         actionBar = UIUtils.getSupportActionBar(getActivity());
 
-        if (CompatUtils.hasLollipop()) {
-            actionBar.setElevation(getResources().getDimension(R.dimen.toolbar_elevation));
-        }
-
         if (mForumTitle != null) {
             actionBar.setTitle(mForumTitle.isEmpty() ? null : mForumTitle);
         }
@@ -325,6 +321,10 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         actionBar.setListNavigationCallbacks(mSpinnerAdapter, mSpinnerAdapter);
         actionBar.setSelectedNavigationItem(mSpinnerAdapter.getCount() - 1);
+
+        if (CompatUtils.hasLollipop()) {
+            actionBar.setElevation(getResources().getDimension(R.dimen.toolbar_elevation));
+        }
     }
 
     @Override
