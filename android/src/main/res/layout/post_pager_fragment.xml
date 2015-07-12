@@ -20,6 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="?android:attr/actionBarSize"
         android:background="@color/colorPrimary"
+        android:elevation="@dimen/toolbar_elevation"
         android:weightSum="1">
 
         <ImageButton

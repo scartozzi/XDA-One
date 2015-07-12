@@ -103,6 +103,8 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
 
     private RecyclerView mRecyclerView;
 
+    private ActionBar actionBar;
+
     // View helpers
     private ActionModeHelper mModeHelper;
 
@@ -304,7 +306,12 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
     }
 
     private void setupActionBar() {
-        final ActionBar actionBar = UIUtils.getSupportActionBar(getActivity());
+        actionBar = UIUtils.getSupportActionBar(getActivity());
+
+        if (CompatUtils.hasLollipop()) {
+            actionBar.setElevation(getResources().getDimension(R.dimen.toolbar_elevation));
+        }
+
         if (mForumTitle != null) {
             actionBar.setTitle(mForumTitle.isEmpty() ? null : mForumTitle);
         }
@@ -334,6 +341,10 @@ public class ThreadFragment extends Fragment implements BackPressedListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
+        if (CompatUtils.hasLollipop()) {
+            actionBar.setElevation(0);
+        }
 
         mThreadClient.getBus().unregister(mThreadEventHelper);
     }

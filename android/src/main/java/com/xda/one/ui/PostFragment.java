@@ -322,6 +322,8 @@ public class PostFragment extends Fragment
         UIUtils.updateEmptyViewState(getView(), mRecyclerView, data.size());
         mAdapter.addAll(data);
 
+
+
         // Scroll to the relevant position in the list
         if (mScrollToItem == SCROLL_TO_LAST_LIST_ITEM) {
             mRecyclerView.scrollToPosition(mAdapter.getItemCount() - 1);

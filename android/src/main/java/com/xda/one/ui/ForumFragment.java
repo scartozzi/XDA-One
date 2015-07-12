@@ -40,6 +40,7 @@ import com.xda.one.ui.listener.BackPressedListener;
 import com.xda.one.ui.widget.HierarchySpinnerAdapter;
 import com.xda.one.ui.widget.XDARefreshLayout;
 import com.xda.one.util.AccountUtils;
+import com.xda.one.util.CompatUtils;
 import com.xda.one.util.FragmentUtils;
 import com.xda.one.util.UIUtils;
 import com.xda.one.util.Utils;
@@ -77,6 +78,8 @@ public class ForumFragment extends Fragment
     private XDARefreshLayout mRefreshLayout;
 
     private RecyclerView mRecyclerView;
+
+    private ActionBar actionBar;
 
     private ActionModeHelper mModeHelper;
 
@@ -229,13 +232,17 @@ public class ForumFragment extends Fragment
 
         mModeHelper.setRecyclerView(mRecyclerView);
 
-        final ActionBar actionBar = UIUtils.getSupportActionBar(getActivity());
+        actionBar = UIUtils.getSupportActionBar(getActivity());
         actionBar.setTitle(mForumTitle);
         actionBar.setSubtitle(mParentForumTitle);
         if (mForumType == ForumType.CHILD) {
             actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
             actionBar.setListNavigationCallbacks(mSpinnerAdapter, mSpinnerAdapter);
             actionBar.setSelectedNavigationItem(mSpinnerAdapter.getCount() - 1);
+
+            if (CompatUtils.hasLollipop()) {
+                actionBar.setElevation(getResources().getDimension(R.dimen.toolbar_elevation));
+            }
         }
 
         if (mAdapter.getItemCount() == 0) {
@@ -257,6 +264,10 @@ public class ForumFragment extends Fragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
+        if (CompatUtils.hasLollipop()) {
+            actionBar.setElevation(0);
+        }
 
         mClient.getBus().unregister(mEventHandler);
     }
