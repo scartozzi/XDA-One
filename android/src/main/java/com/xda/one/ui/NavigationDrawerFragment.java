@@ -307,7 +307,7 @@ public class NavigationDrawerFragment extends Fragment
 
         @Override
         public Loader<List<ResponseForum>> onCreateLoader(final int id, final Bundle args) {
-            return new ForumLoader(getActivity(), ForumType.TOP, null, true);
+            return new ForumLoader(getActivity(), ForumType.ALL, null, true);
         }
 
         @Override
