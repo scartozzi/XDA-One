@@ -36,7 +36,7 @@
     <!-- forum menu -->
     <string name="forum_home_title">XDA Home</string>
     <string name="subscribed">Sottoscritti</string>
-    <string name="participated">Participati</string>
+    <string name="participated">Partecipati</string>
     <string name="notifications">Notifiche</string>
     <string name="forum_newest_title">Nuovi</string>
     <string name="forum_top_title">Top</string>
