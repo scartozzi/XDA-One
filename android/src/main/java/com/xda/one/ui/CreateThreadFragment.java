@@ -92,14 +92,14 @@ public class CreateThreadFragment extends DialogFragment implements TextWatcher 
                 boolean creatable = true;
 
                 if (mPostContent.getText().length() == 0) {
-                    mPostContent.setError("Please enter a message");
+                    mPostContent.setError(getString(R.string.enter_message));
                     creatable = false;
                 } else {
                     mPostContent.setError(null);
                 }
 
                 if (mPostTitle.getText().length() == 0) {
-                    mPostTitle.setError("Please enter a title");
+                    mPostTitle.setError(getString(R.string.enter_title));
                     creatable = false;
                 } else {
                     mPostTitle.setError(null);
@@ -145,7 +145,7 @@ public class CreateThreadFragment extends DialogFragment implements TextWatcher 
 
     void createNewThread() {
         if (!AccountUtils.isAccountAvailable(getActivity())) {
-            Toast.makeText(getActivity(), "You are not logged in", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.not_logged_in, Toast.LENGTH_LONG).show();
             dismiss();
         }
         final String postTitle = mPostTitle.getText().toString();
@@ -154,7 +154,7 @@ public class CreateThreadFragment extends DialogFragment implements TextWatcher 
         mClient.createThread(mForumId, postTitle, message, new Consumer<Result>() {
             @Override
             public void run(Result result) {
-                Toast.makeText(getActivity(), "Post has been created", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.post_created, Toast.LENGTH_LONG).show();
                 dismiss();
             }
         });

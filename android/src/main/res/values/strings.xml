@@ -23,6 +23,17 @@
     <string name="sent_items_title">Sent Items</string>
 
     <string name="double_back_press">Press once again to exit!</string>
+    <string name="something_wrong">Something went wrong</string>
+
+    <string name="enter_username">Please enter a username</string>
+    <string name="enter_title">Please enter title</string>
+    <string name="enter_message">Please enter message</string>
+
+    <string name="not_logged_in">You are not logged in</string>
+    <string name="post_created">Post has been created</string>
+    <string name="not_logged_in">You are not logged in</string>
+    Post has been created
+
 
     <!-- forum menu -->
     <string name="forum_home_title">XDA Home</string>

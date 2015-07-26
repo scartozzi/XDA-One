@@ -133,21 +133,21 @@ public class CreateMessageFragment extends DialogFragment implements TextWatcher
                 boolean sendable = true;
 
                 if (mMessageUsername.getText().length() == 0) {
-                    mMessageUsername.setError("Please enter a username");
+                    mMessageUsername.setError(getString(R.string.enter_username));
                     sendable = false;
                 } else {
                     mMessageUsername.setError(null);
                 }
 
                 if (mMessageTitle.getText().length() == 0) {
-                    mMessageTitle.setError("Please enter a title");
+                    mMessageTitle.setError(getString(R.string.enter_title));
                     sendable = false;
                 } else {
                     mMessageTitle.setError(null);
                 }
 
                 if (mMessageContent.getText().length() == 0) {
-                    mMessageContent.setError("Please enter a message");
+                    mMessageContent.setError(getString(R.string.enter_message));
                     sendable = false;
                 } else {
                     mMessageTitle.setError(null);
