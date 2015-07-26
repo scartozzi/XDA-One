@@ -121,7 +121,7 @@
     <string name="register_email">Registrati usando l\'email</string>
     <string name="change_password">Cambia Password</string>
     <string name="change_email_address">Cambia indirizzo email</string>
-    <string name="no_items_empty_view">Nessun elemto da mostrare</string>
+    <string name="no_items_empty_view">Nessun elemento da mostrare</string>
 
     <string name="message_reply_success">Risposta inviata con successo</string>
     <string name="message_reply_failed">Impossibile inviare la risposta</string>
