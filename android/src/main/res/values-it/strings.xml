@@ -94,7 +94,8 @@
     <string name="search_xda_title">Cerca XDA</string>
 
     <string name="post_creation_failed">Creazione del post fallita</string>
-
+    <string name="post_download_finished">"Download completato"</string>
+    <string name="post_open_download">Apri</string>
     <string name="message_delete_successful">Messaggio eliminato con successo</string>
 
     <string name="forum_subscription_subscribed">Iscrizione al forum riuscita</string>
